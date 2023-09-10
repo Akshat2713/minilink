@@ -1,19 +1,7 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
 const { onCall } = require("firebase-functions/v2/https");
 
 const { setGlobalOptions } = require("firebase-functions/v2");
-
-// Set the maximum instances to 10 for all functions
 setGlobalOptions({ maxInstances: 10 });
-
 
 const metadata = {
     urls: {
@@ -23,6 +11,16 @@ const metadata = {
         rebrandly: 'https://api.rebrandly.com/v1/links',
     },
     tokens: {
+        bitly: '847c5098f3df50607f3d384922d569926b614ff7',
+        shrtcode: '',
+        tinyurl: 'XZXAVrV0vWBndPITCkLMkUTE8hYc7xOI1YU8EPkuz01hyc4J8mgIbM6CJQBL',
+        rebrandly: '61fac2e5814340b19d0c600c92fbf64e',
+    },
+    tokens: {
+        bitly: process.env.TOKEN_BITLY,
+        shrtcode: process.env.TOKEN_SHRTCODE,
+        tinyurl: process.env.TOKEN_TINYURL,
+        rebrandly: process.env.TOKEN_REBRANDLY,
     }
 }
 
@@ -108,17 +106,13 @@ async function rebrandly(input_url) {
 }
 
 exports.shortenLink = onCall(async request => {
-    const req = JSON.parse(request.data.text);
-    // const map = {
-    //     'bitly': bitly,
-    //     'shrtcode': shrtcode,
-    //     'tinyurl': tinyurl,
-    //     'rebrandly': rebrandly,
-    // }
-    const short_url = await bitly(req.url);
+    const map = {
+        'bitly': bitly,
+        'shrtcode': shrtcode,
+        'tinyurl': tinyurl,
+        'rebrandly': rebrandly,
+    }
 
-    return {
-        short_url,
-        'kaushal': 'kaushaliskaushal'
-    };
+    const short_url = await map[request.data.service](request.data.url);
+    return short_url;
 })

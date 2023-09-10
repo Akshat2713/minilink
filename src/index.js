@@ -19,13 +19,11 @@ const shortenLink = httpsCallable(functions, 'shortenLink')
 
 $('#link-shorten-button').onclick = e => {
     shortenLink({
-        text: JSON.stringify({
-            service: $('[name=service]:checked').value,
-            url: $('#link-shorten-field')
-        })
+        service: $('[name=service]:checked').value,
+        url: $('#link-shorten-field').value
     }).then(x => {
-        $('.shortened-link').textContent = x.data.short_url;
-
+        $('.shortened-link').textContent = x.data;
+        console.log(x.data);
         $('.dialog').classList.toggle('opened')
     })
 }
