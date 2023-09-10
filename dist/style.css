@@ -1,0 +1,332 @@
+:root {
+    --darkest: #0c0a14;
+    --darker: #171421;
+    --dark: #1e1a2a;
+    --lightest: hsl(0, 0%, 80%);
+    --lighter: #b0b0b0;
+    --light: #7a758f;
+    --green: #4e3468;
+    --light-green: hsl(270, 33%, 36%);
+
+    --color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--green);
+}
+
+.material-symbols-outlined {
+    font-size: inherit;
+    padding: 4px;
+}
+
+html {
+    font-family: 'Source Sans Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+
+    background-color: var(--darkest);
+    color: var(--lighter);
+    color-scheme: var(--color-scheme);
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    overflow: auto;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    padding: 16px;
+    width: min(700px, 100%);
+    margin: auto;
+}
+
+.radio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 2px;
+    width: 100%;
+    overflow: visible;
+    margin: 8px 0;
+}
+
+.radio input {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    appearance: none;
+    overflow: visible;
+    position: relative;
+    font: inherit;
+
+    cursor: pointer;
+}
+
+.radio input:before {
+    content: attr(aria-label);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    color: var(--light);
+    background: var(--darker);
+    text-align: center;
+    box-shadow: inset 0 0 0 3px var(--dark);
+    transition: all 150ms ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+}
+
+.radio input:hover:before {
+    background: var(--dark);
+}
+
+.radio input:checked:before {
+    background: var(--green);
+    box-shadow: none;
+    color: var(--lighter);
+}
+
+.radio input:first-child:before {
+    border-top-left-radius: 100vw;
+    border-bottom-left-radius: 100vw;
+}
+
+.radio input:last-child:before {
+    border-top-right-radius: 100vw;
+    border-bottom-right-radius: 100vw;
+}
+
+#controls {
+    background: var(--darker);
+    border-radius: 100vw;
+    display: flex;
+    height: 64px;
+    overflow: visible;
+}
+
+#controls:hover {
+    background: var(--dark);
+}
+
+#link-shorten-field {
+    border: none;
+    background: none;
+    padding: 16px;
+    font: inherit;
+    color: var(--lighter);
+    flex-grow: 1;
+
+    user-select: none;
+}
+
+#link-shorten-field::before {
+    content: 'he';
+    background-color: red;
+    width: 10px;
+    height: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#link-shorten-label {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#controls:focus-within {
+    outline: 2px solid var(--green);
+}
+
+#link-shorten-field:focus {
+    outline: none;
+}
+
+#link-shorten-button {
+    border: none;
+    background: var(--green);
+    padding: 16px;
+    border-radius: 100vw;
+    font: inherit;
+    color: var(--lightest);
+    cursor: pointer;
+    height: calc(100% - 16px);
+    margin: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    user-select: none;
+}
+
+#link-shorten-button .material-symbols-outlined {
+    font-size: 1em;
+}
+
+button#link-shorten-button:hover {
+    background: var(--light-green);
+}
+
+footer {
+    font-size: 0.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+}
+
+footer p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p img {
+    margin: 4px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px;
+    font-size: 1.4em;
+
+    margin-bottom: 48px;
+}
+
+header .logo {
+    flex-grow: 1;
+    gap: 8px;
+}
+
+header .options,
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+#result {
+    text-align: center;
+}
+
+.dialog {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: none;
+}
+
+.dialog .backdrop {
+    background-color: var(--darkest);
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
+
+.dialog .content {
+    background-color: var(--dark);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(500px, calc(100% - 32px));
+    /* height: min(200px, 100%); */
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 16px;
+    padding: 8px;
+}
+
+.dialog .content .top {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+
+    padding-bottom: 32px;
+}
+
+.dialog .content .top .close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    border-radius: 100vw;
+    border: 0;
+    background: var(--green);
+    cursor: pointer;
+}
+
+.dialog .content .shortened-link {
+    text-align: center;
+}
+
+.dialog .share-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+}
+
+.dialog .share-controls button {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    font: inherit;
+    padding: 8px;
+    margin: 4px;
+    cursor: pointer;
+
+    background: var(--green);
+}
+
+.dialog .share-controls button:hover,
+.dialog .content .top .close:hover {
+    background-color: var(--light-green);
+}
+
+.dialog.opened {
+    display: block;
+}

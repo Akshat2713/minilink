@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>Minilink - Link Shortening Hub</title>
+
+    <meta property="og:site_name" content="Minilink" />
+    <meta name="description" content="TODO" />
+    <meta property="og:url" content="https://minilink.web.app/" />
+    <meta property="og:image" content="https://minilink.web.app/favicon.png" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="canonical" href="https://minilink.web.app/" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Minilink" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#4e3468" />
+    <meta name="theme-color" content="#4e3468" />
+    <link rel="shortcut icon" sizes="128x128" href="./favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="main.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo"><span class="material-symbols-outlined">link</span>Minilink</div>
+
+        <div class="options">
+            <span class="material-symbols-outlined">history</span>
+        </div>
+    </header>
+
+    <main>
+        <h1 id="tagline">
+            Link shortening overkill!
+        </h1>
+        <div id="controls">
+            <label for="link-shorten-field" id="link-shorten-label">
+                <span class="material-symbols-outlined">link</span>
+            </label>
+            <input type="text" id="link-shorten-field" placeholder="Enter link to shorten…">
+            <button id="link-shorten-button">Shorten <span
+                    class="material-symbols-outlined">arrow_forward</span></button>
+        </div>
+
+        <div class="radio">
+            <input type="radio" name="service" value="bitly" aria-label="bit.ly" checked>
+            <input type="radio" name="service" value="shrtcode" aria-label="shrtco.de">
+            <input type="radio" name="service" value="tinyurl" aria-label="tinyurl.com">
+            <input type="radio" name="service" value="rebrandly" aria-label="rebrand.ly">
+        </div>
+
+        <p id="result"></p>
+    </main>
+
+    <footer>
+        <p>
+            Powered by:
+            <img width="40" height="40" src="./assets/bitly.png">
+            <img width="40" height="40" src="./assets/rebrandly.png">
+            <img width="40" height="40" src="./assets/shrtcode.png">
+            <img width="40" height="40" src="./assets/tinyurl.png">
+        </p>
+        <p>
+            Made with <span class="material-symbols-outlined">favorite</span> by Team coderLoader
+        </p>
+    </footer>
+
+    <div class="dialog">
+        <div class="backdrop"></div>
+        <div class="content">
+            <div class="top">
+                <div class="status">Success!! 🎉</div>
+                <button class="close material-symbols-outlined"
+                    onclick="document.querySelector('.dialog').classList.toggle('opened')">close</button>
+            </div>
+            <div class="shortened-link">https://shrtco.de/rl1qmF</div>
+
+            <div class="share-controls">
+                <button id="copy-link"><span class="material-symbols-outlined">content_copy</span> Copy</button>
+                <button id="share-link"><span class="material-symbols-outlined">share</span> Share</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
